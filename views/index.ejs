@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>免费小说 <%=category%></title>
+    <link rel="stylesheet" href="/lib/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <script src="/lib/jquery-easyui-1.5/jquery.min.js"></script>
+    <script src="/lib/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <% include head.ejs%>
+    <div style="overflow: hidden;zoom: 1">
+        <div class="text-center">
+            <div class="btn-group">
+                <%if(page>1){%>
+                <a href="/?category=<%=category%>&searchTxt=<%=searchTxt%>&page=<%=page-1%>" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-arrow-left"></span>
+                    上一页
+                </a>
+                <%}%>
+                <div class="btn-group">
+                    <%if(isNextPage){%>
+
+                    <ul class="pagination" style="margin:0px 20px;font-weight: bold">
+                        <li><a href="/?category=<%=category%>&searchTxt=<%=searchTxt%>&page=<%=page%>"><%=page%></a></li>
+                        <li><a href="/?category=<%=category%>&searchTxt=<%=searchTxt%>&page=<%=page+1%>"><%=page+1%></a></li>
+                        <li><a href="/?category=<%=category%>&searchTxt=<%=searchTxt%>&page=<%=page+2%>"><%=page+2%></a></li>
+                        <li><a href="/?category=<%=category%>&searchTxt=<%=searchTxt%>&page=<%=page+3%>"><%=page+3%></a></li>
+                        <li><a href="/?category=<%=category%>&searchTxt=<%=searchTxt%>&page=<%=page+4%>"><%=page+4%></a></li>
+                    </ul>
+                    <%}%>
+
+                </div>
+                <%if(isNextPage){%>
+                <a href="/?category=<%=category%>&searchTxt=<%=searchTxt%>&page=<%=page+1%>" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-arrow-right"></span>
+                    下一页
+                </a>
+                <%}%>
+            </div>
+        </div>
+        <div>
+            <%for(var item of rows){%>
+            <div class="col-sm-6 col-md-3 col-lg-3
+            " style="margin-top: 15px;">
+                <div style="background-color:papayawhip;text-align: center;margin-bottom: 20px;border-radius: 10px;box-shadow: 5px 5px 5px #ccc">
+                    <img src="<%=item.imgUrl%>" style="margin-top: 15px;width: 200px;height: 180px;"/>
+                    <h4 style="font-family: 微软雅黑;font-weight: bold"><%=item.name%></h4>
+                    <span style="font-family: 微软雅黑;font-size: 15px;font-weight: bold">作者：<%=item.author%></span>
+                    <div style="overflow: hidden;width:200px;height:120px;font-family: 微软雅黑;margin: 0 auto;">
+                       简介： <%=item.description%>
+                    </div>
+                    <p class="btn-group" style="margin-top:10px;text-align: center">
+                        <a href="/viewnovel?id=<%=item._id%>" class="btn btn-primary"style="font-family: 微软雅黑;">查看章节</a>
+                        <a href="/viewsection?id=<%=item._id%>" class="btn btn-default " style="font-family: 微软雅黑;">开始阅读</a>
+                    </p>
+                </div>
+            </div>
+            <%}%>
+        </div>
+        <a href="#top" style="text-decoration: none;font-size: 18px;color:#ff8080;float:right;"> TOP↑</a>
+    </div>
+</body>
+</html>

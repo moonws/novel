@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title></title>
+    <link rel="stylesheet" href="/lib/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <script src="/lib/jquery-easyui-1.5/jquery.min.js"></script>
+    <script src="/lib/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container text-center">
+    <% if (success) { %>
+    <div class="alert alert-success" role="alert"><%= success %>
+    </div>
+    <% } %>
+    <% if (error) { %>
+    <div class="alert alert-danger" role="alert"><%= error %></div>
+    <% } %>
+</div>
+
+<div class="container" style="width:400px;margin-top: 100px;background-color: #dca7a7;border-radius: 6px;border: 5px solid darkslategrey">
+    <form action="/ajax/admins" method="post" role="form" class="form-horizontal">
+        <div class="form-group">
+            <label for="username" class="control-label">管理员:</label>
+            <div class="input-group">
+                <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+                <input id="username" type="text" name="loginId" class="form-control" placeholder="admin"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="password" class="control-label">密码:</label>
+            <div class="input-group">
+                <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+                <input id="password" type="password" name="loginPass" class="form-control" placeholder="password"/>
+            </div>
+        </div>
+        <div class="form-group text-center">
+            <button type="reset" class="btn btn-info" style="margin-right: 10px">重置</button>
+            <button type="submit" class="btn btn-primary">管理员登陆</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

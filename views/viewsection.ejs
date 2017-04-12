@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>免费小说</title>
+    <link rel="stylesheet" href="/lib/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <script src="/lib/jquery-easyui-1.5/jquery.min.js"></script>
+    <script src="/lib/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+</head>
+<body>
+<% include head.ejs %>
+<div class="text-center">
+    <div class="btn-group">
+        <%if(index>0){%>
+        <a href="/viewsection?id=<%=novel._id%>&index=<%=index-1%>" class="btn btn-primary" style="border: 0px;outline: 0px;background-color: #c7ddef;margin-right: 10px;">
+            <span class="glyphicon glyphicon-arrow-left" ></span>
+            上一章
+        </a>
+        <%}%>
+        <a href="/viewnovel?id=<%=novel._id%>" class="btn btn-primary" style="border: 0px;outline: 0px;background-color: #c7ddef;margin-right: 10px;">
+            <span class="glyphicon"></span>
+            返回目录
+        </a>
+        <%if(index<novel.sections.length-1){%>
+        <a href="/viewsection?id=<%=novel._id%>&index=<%=index+1%>" class="btn btn-primary" style="border: 0px;outline: 0px;background-color: #c7ddef">
+            <span class="glyphicon glyphicon-arrow-right"></span>
+            下一章
+        </a>
+        <%}%>
+    </div>
+    请选择背景颜色：<input type="color" onchange="changeColor()" id="color">
+</div>
+<div id="content" style="border:1px solid #ccc;width: 80%;margin: 20px auto;box-shadow: 5px 5px 5px #ccc;border-radius: 10px;">
+    <div style="text-align: center;padding: 5px;">
+        <h3><%=novel.sections[index].name%></h3>
+    </div>
+    <div style="margin: 0 auto;font-size: 14px;"><%-content%></div>
+        <a href="#top">
+            <p style="text-decoration: none;font-size: 18px;color:#2b542c;float:right;padding: 7px;background-color: red;border-radius: 10px">TOP↑</p>
+        </a>
+</div>
+</body>
+<script>
+    var content=document.getElementById("content")
+    var color=document.getElementById("color");
+    var bgColor;
+    window.onload=function(){
+        bgColor=localStorage.getItem("color");
+        content.style.backgroundColor=bgColor;
+    };
+    function changeColor(){
+
+        var colorValue=color.value;
+        content.style.backgroundColor=colorValue;
+        localStorage.setItem("color",colorValue);
+    };
+</script>
+</html>
